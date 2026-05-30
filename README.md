@@ -51,18 +51,20 @@ The CRM System enables organizations to efficiently manage customer data, monito
 ┌─────────────────┐
 │    Frontend     │
 │ HTML • CSS • JS │
+│ (Node.js Server)│
 └────────┬────────┘
          │
          ▼
 ┌─────────────────┐
 │     Backend     │
-│  Python / Flask │
+│ Python (Flask) /│
+│ JavaScript(Node)│
 └────────┬────────┘
          │
          ▼
 ┌─────────────────┐
 │    Database     │
-│ MySQL / SQLite  │
+│     MongoDB     │
 └─────────────────┘
 ```
 
@@ -72,9 +74,9 @@ The CRM System enables organizations to efficiently manage customer data, monito
 
 | Layer | Technologies |
 |---------|-------------|
-| Frontend | HTML5, CSS3, JavaScript, Bootstrap |
-| Backend | Python, Flask |
-| Database | MySQL, SQLite |
+| Frontend | HTML5, CSS3, JavaScript, Bootstrap, Node.js |
+| Backend | Python (Flask), JavaScript (Node.js) |
+| Database | MongoDB |
 | Version Control | Git, GitHub |
 | Development Tools | VS Code |
 
@@ -129,6 +131,12 @@ Manages users, permissions, authentication, and system configurations.
 
 ## Installation
 
+### Prerequisites
+
+- Node.js and npm installed
+- Python 3.x installed
+- MongoDB running locally or remotely
+
 ### Clone the Repository
 
 ```bash
@@ -136,13 +144,21 @@ git clone https://github.com/yourusername/crm-system.git
 cd crm-system
 ```
 
-### Create a Virtual Environment
+### Frontend Setup (Node.js)
+
+```bash
+npm install
+```
+
+### Backend Setup (Python, if using Flask)
+
+#### Create a Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-### Activate the Environment
+#### Activate the Environment
 
 **Windows**
 
@@ -156,13 +172,21 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-### Install Dependencies
+#### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
 ### Start the Application
+
+#### Start Node.js Server
+
+```bash
+npm start
+```
+
+#### Start Python Server (If using Flask)
 
 ```bash
 python app.py
@@ -171,43 +195,43 @@ python app.py
 The application will be available at:
 
 ```text
-http://localhost:5000
+http://localhost:3000
 ```
 
 ---
 
-## Database Schema
+## Database Collections (MongoDB)
 
-### Customers
-
-| Field | Type |
-|---------|---------|
-| customer_id | INT |
-| name | VARCHAR |
-| email | VARCHAR |
-| phone | VARCHAR |
-| address | TEXT |
-| created_at | DATETIME |
-
-### Leads
+### Customers Collection
 
 | Field | Type |
 |---------|---------|
-| lead_id | INT |
-| customer_name | VARCHAR |
-| source | VARCHAR |
-| status | VARCHAR |
-| assigned_to | VARCHAR |
+| _id | ObjectId |
+| name | String |
+| email | String |
+| phone | String |
+| address | String |
+| created_at | Date |
 
-### Sales
+### Leads Collection
 
 | Field | Type |
 |---------|---------|
-| sale_id | INT |
-| customer_id | INT |
-| amount | DECIMAL |
-| stage | VARCHAR |
-| created_at | DATETIME |
+| _id | ObjectId |
+| customer_name | String |
+| source | String |
+| status | String |
+| assigned_to | String |
+
+### Sales Collection
+
+| Field | Type |
+|---------|---------|
+| _id | ObjectId |
+| customer_id | ObjectId |
+| amount | Number |
+| stage | String |
+| created_at | Date |
 
 ---
 
